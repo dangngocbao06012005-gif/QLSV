@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace qlsv
 {
     public partial class frm_login : Form
     {
+        private readonly StudentRepository _repository = new StudentRepository();
         private readonly BindingList<Student> _students = new BindingList<Student>();
         private readonly BindingList<Student> _viewStudents = new BindingList<Student>();
         private readonly BindingSource _bindingSource = new BindingSource();
@@ -16,7 +18,8 @@ namespace qlsv
             InitializeComponent();
             ConfigureUi();
             WireEvents();
-            ApplyFilter();
+            _repository.EnsureDatabase();
+            LoadStudents();
         }
 
         private void ConfigureUi()
@@ -66,6 +69,21 @@ namespace qlsv
             };
         }
 
+        private void LoadStudents()
+        {
+            var students = _repository.GetAll();
+
+            _students.RaiseListChangedEvents = false;
+            _students.Clear();
+            foreach (var sv in students)
+            {
+                _students.Add(sv);
+            }
+            _students.RaiseListChangedEvents = true;
+
+            ApplyFilter();
+        }
+
         private bool TryGetStudentFromForm(out Student student)
         {
             student = null;
@@ -101,14 +119,22 @@ namespace qlsv
                 return;
             }
 
-            if (_students.Any(s => s.MaSV.Equals(student.MaSV, StringComparison.OrdinalIgnoreCase)))
+            try
+            {
+                _repository.Insert(student);
+            }
+            catch (SqlException ex) when (IsDuplicateKey(ex))
             {
                 MessageBox.Show("Mã sinh viên đã tồn tại.", "Trùng mã", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không lưu được dữ liệu. Chi tiết: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            _students.Add(student);
-            ApplyFilter();
+            LoadStudents();
             ClearForm();
         }
 
@@ -126,21 +152,22 @@ namespace qlsv
                 return;
             }
 
-            bool duplicateCode = _students.Any(s => !ReferenceEquals(s, selected) && s.MaSV.Equals(updated.MaSV, StringComparison.OrdinalIgnoreCase));
-            if (duplicateCode)
+            try
+            {
+                _repository.Update(selected.MaSV, updated);
+            }
+            catch (SqlException ex) when (IsDuplicateKey(ex))
             {
                 MessageBox.Show("Mã sinh viên đã tồn tại cho người khác.", "Trùng mã", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không cập nhật được. Chi tiết: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            selected.MaSV = updated.MaSV;
-            selected.HoTen = updated.HoTen;
-            selected.NgaySinh = updated.NgaySinh;
-            selected.GioiTinh = updated.GioiTinh;
-            selected.Lop = updated.Lop;
-
-            _bindingSource.ResetBindings(false);
-            ApplyFilter();
+            LoadStudents();
             ClearForm();
         }
 
@@ -149,7 +176,7 @@ namespace qlsv
             var selected = GetSelectedStudent();
             if (selected == null)
             {
-                MessageBox.Show("Chọn một sinh viên để tải dữ liệu chỉnh sửa.", "Chưa chọn dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Chọn một sinh viên trong danh sách để tải dữ liệu chỉnh sửa.", "Chưa chọn dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -175,8 +202,17 @@ namespace qlsv
                 return;
             }
 
-            _students.Remove(selected);
-            ApplyFilter();
+            try
+            {
+                _repository.Delete(selected.MaSV);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không xóa được. Chi tiết: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            LoadStudents();
             ClearForm();
         }
 
@@ -214,13 +250,9 @@ namespace qlsv
             txtMaSV.Focus();
         }
 
-        private class Student
+        private static bool IsDuplicateKey(SqlException ex)
         {
-            public string MaSV { get; set; }
-            public string HoTen { get; set; }
-            public DateTime NgaySinh { get; set; }
-            public string GioiTinh { get; set; }
-            public string Lop { get; set; }
+            return ex.Number == 2627 || ex.Number == 2601;
         }
     }
 }

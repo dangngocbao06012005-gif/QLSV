@@ -89,7 +89,7 @@ namespace qlsv
             this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoa.ForeColor = System.Drawing.Color.White;
-            this.btnXoa.Location = new System.Drawing.Point(176, 370);
+            this.btnXoa.Location = new System.Drawing.Point(176, 330);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(130, 35);
             this.btnXoa.TabIndex = 8;
@@ -101,7 +101,7 @@ namespace qlsv
             this.btnSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(173)))), ((int)(((byte)(78)))));
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSua.ForeColor = System.Drawing.Color.White;
-            this.btnSua.Location = new System.Drawing.Point(25, 370);
+            this.btnSua.Location = new System.Drawing.Point(25, 330);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(130, 35);
             this.btnSua.TabIndex = 7;
@@ -113,7 +113,7 @@ namespace qlsv
             this.btnCapNhat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.btnCapNhat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCapNhat.ForeColor = System.Drawing.Color.White;
-            this.btnCapNhat.Location = new System.Drawing.Point(176, 320);
+            this.btnCapNhat.Location = new System.Drawing.Point(176, 280);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.Size = new System.Drawing.Size(130, 35);
             this.btnCapNhat.TabIndex = 6;
@@ -125,7 +125,7 @@ namespace qlsv
             this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.Location = new System.Drawing.Point(25, 320);
+            this.btnThem.Location = new System.Drawing.Point(25, 280);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(130, 35);
             this.btnThem.TabIndex = 5;
@@ -134,7 +134,7 @@ namespace qlsv
             // 
             // txtLopQL
             // 
-            this.txtLopQL.Location = new System.Drawing.Point(25, 280);
+            this.txtLopQL.Location = new System.Drawing.Point(25, 240);
             this.txtLopQL.Name = "txtLopQL";
             this.txtLopQL.Size = new System.Drawing.Size(281, 22);
             this.txtLopQL.TabIndex = 4;
@@ -142,7 +142,7 @@ namespace qlsv
             // lblLopQL
             // 
             this.lblLopQL.AutoSize = true;
-            this.lblLopQL.Location = new System.Drawing.Point(22, 260);
+            this.lblLopQL.Location = new System.Drawing.Point(22, 219);
             this.lblLopQL.Name = "lblLopQL";
             this.lblLopQL.Size = new System.Drawing.Size(81, 16);
             this.lblLopQL.TabIndex = 0;
@@ -156,7 +156,7 @@ namespace qlsv
             "Nam",
             "Nữ",
             "Khác"});
-            this.cbbGioiTinh.Location = new System.Drawing.Point(25, 230);
+            this.cbbGioiTinh.Location = new System.Drawing.Point(25, 190);
             this.cbbGioiTinh.Name = "cbbGioiTinh";
             this.cbbGioiTinh.Size = new System.Drawing.Size(281, 24);
             this.cbbGioiTinh.TabIndex = 3;
@@ -164,7 +164,7 @@ namespace qlsv
             // lblGioiTinh
             // 
             this.lblGioiTinh.AutoSize = true;
-            this.lblGioiTinh.Location = new System.Drawing.Point(22, 210);
+            this.lblGioiTinh.Location = new System.Drawing.Point(22, 169);
             this.lblGioiTinh.Name = "lblGioiTinh";
             this.lblGioiTinh.Size = new System.Drawing.Size(56, 16);
             this.lblGioiTinh.TabIndex = 0;
@@ -173,7 +173,7 @@ namespace qlsv
             // dtpNgaySinh
             // 
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNgaySinh.Location = new System.Drawing.Point(25, 180);
+            this.dtpNgaySinh.Location = new System.Drawing.Point(25, 140);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
             this.dtpNgaySinh.Size = new System.Drawing.Size(281, 22);
             this.dtpNgaySinh.TabIndex = 2;
@@ -181,7 +181,7 @@ namespace qlsv
             // lblNgaySinh
             // 
             this.lblNgaySinh.AutoSize = true;
-            this.lblNgaySinh.Location = new System.Drawing.Point(22, 160);
+            this.lblNgaySinh.Location = new System.Drawing.Point(22, 119);
             this.lblNgaySinh.Name = "lblNgaySinh";
             this.lblNgaySinh.Size = new System.Drawing.Size(65, 16);
             this.lblNgaySinh.TabIndex = 0;
@@ -189,7 +189,7 @@ namespace qlsv
             // 
             // txtHoTen
             // 
-            this.txtHoTen.Location = new System.Drawing.Point(25, 130);
+            this.txtHoTen.Location = new System.Drawing.Point(25, 90);
             this.txtHoTen.Name = "txtHoTen";
             this.txtHoTen.Size = new System.Drawing.Size(281, 22);
             this.txtHoTen.TabIndex = 1;
@@ -197,7 +197,7 @@ namespace qlsv
             // lblHoTen
             // 
             this.lblHoTen.AutoSize = true;
-            this.lblHoTen.Location = new System.Drawing.Point(22, 110);
+            this.lblHoTen.Location = new System.Drawing.Point(22, 69);
             this.lblHoTen.Name = "lblHoTen";
             this.lblHoTen.Size = new System.Drawing.Size(55, 16);
             this.lblHoTen.TabIndex = 0;
@@ -205,7 +205,7 @@ namespace qlsv
             // 
             // txtMaSV
             // 
-            this.txtMaSV.Location = new System.Drawing.Point(25, 80);
+            this.txtMaSV.Location = new System.Drawing.Point(25, 40);
             this.txtMaSV.Name = "txtMaSV";
             this.txtMaSV.Size = new System.Drawing.Size(281, 22);
             this.txtMaSV.TabIndex = 0;
@@ -213,7 +213,7 @@ namespace qlsv
             // lblMaSV
             // 
             this.lblMaSV.AutoSize = true;
-            this.lblMaSV.Location = new System.Drawing.Point(22, 60);
+            this.lblMaSV.Location = new System.Drawing.Point(22, 19);
             this.lblMaSV.Name = "lblMaSV";
             this.lblMaSV.Size = new System.Drawing.Size(76, 16);
             this.lblMaSV.TabIndex = 0;
